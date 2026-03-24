@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 function MyComponent(){
 
+    /* useState (onClick)
     const [name, setName] = useState("Guest");
     const [age, setAge] = useState(0);
     const [isEmployed, setIsEmployed] = useState(false);
@@ -28,6 +29,20 @@ function MyComponent(){
                 <p>Is employed? {isEmployed ? "Yes" : "No"}</p>
                 <button onClick={toggleStatus}>Toggle status</button>
             </div>
+    );
+    */
+
+    const [name, setName] = useState(""); 
+
+    function handleName(event) {
+        setName(event.target.value);
+    }
+
+    return(
+        <div>
+            <input value={name} onChange={handleName}/>
+            <p>Name: {name}</p>
+        </div>
     );
 }
 
