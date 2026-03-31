@@ -1,9 +1,9 @@
-import MyComponent2 from "./Mycomponent2.jsx";
+import ReactHook from "./ReactHook.jsx";
 
 function App() {
   return(
     <>
-      <MyComponent2/>
+      <ReactHook/>
     </>
    
   );
