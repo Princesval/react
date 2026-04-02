@@ -9,7 +9,6 @@
   display: inline-block;
 }
 
-
 .card .card-img {
   max-width: 60%;
   height: auto;
@@ -36,3 +35,8 @@
   border: none;
   cursor: pointer;
 } */
+
+.box {
+  border: 3px solid;
+  padding: 25px;
+}
