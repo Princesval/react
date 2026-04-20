@@ -1,13 +1,14 @@
-import UseRefHook from "./UseRefHook.jsx";
-
-import React from "react";
+import FirstComponent from "./FirstComponent.jsx";
+import TemplateExpressions from "./TemplateExpressions.jsx";
+import Events from "./Events.jsx";
 
 function App() {
   return(
     <>
-      <UseRefHook/>
+      <FirstComponent/>
+      <TemplateExpressions/>
+      <Events/>
     </>
-   
   );
 }
 
