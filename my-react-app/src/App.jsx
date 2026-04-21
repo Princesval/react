@@ -1,6 +1,7 @@
 import FirstComponent from "./FirstComponent.jsx";
 import TemplateExpressions from "./TemplateExpressions.jsx";
 import Events from "./Events.jsx";
+import Challenge from "./Challenge.jsx";
 
 function App() {
   return(
@@ -8,6 +9,7 @@ function App() {
       <FirstComponent/>
       <TemplateExpressions/>
       <Events/>
+      <Challenge/>
     </>
   );
 }
