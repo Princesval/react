@@ -1,5 +1,8 @@
 /* CSS DE COMPONENTE */
-
+/* App.css */
 h1 {
-    color: blue;
+    font-size: 3em;
+    text-decoration: underline;
+    font-style: italic;
+    padding-top: 50px;
 }
