@@ -35,6 +35,7 @@ function App() {
   const [guesses, setGuesses] = useState(guessesQty)
   const [score, setScore] = useState(0)
 
+  // Envolver a função no useCallback {revisar depois}
   const pickWordAndCategory = useCallback(() => {
     // Categoria aleatória
     const categories = Object.keys(words)
@@ -49,6 +50,7 @@ function App() {
   }, [words])
 
   // Começar o jogo
+  // Envolver a função no useCallback {revisar depois}
   const startGame = useCallback(() => {
     clearLetterState()
     // Categaria e palavra escolhida
