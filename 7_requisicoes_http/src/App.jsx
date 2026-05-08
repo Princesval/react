@@ -1,121 +1,136 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// React
+import { useState, useEffect } from "react"
+
+// 4 - CUstom Hook
+import { useFecth } from "./hooks/useFecth"
+
+// CSS
+import "./App.css"
+
+// API - DATA
+const url = "http://localhost:3000/products/"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([])
+
+  // 4 - Custom Hook
+  const { data: items, httpConfig, loading, error } = useFecth(url)
+
+  const [name, setName] = useState("")
+  const [price, setPrice] = useState("")
+
+  // Deletando Dados
+  const [product, setProduct] = useState([])
+
+  // 1 - Resgatando Dados
+  // useEffect(() => {
+  //   async function fetchData() {
+
+  //     const res = await fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setProducts(data)
+  //     })
+
+  //     // const res = await fetch(url)
+
+  //     // const data = await res.json()
+
+  //     // setProducts(data)
+  //   }
+
+  //   fetchData()
+  // }, [])
+
+  // 2 - Add Products
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const product = {
+      name,
+      price,
+    }
+
+    // const res = await fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(product)
+    // })
+
+    // // 3 - Carregamento Dinâmico
+    // const addedProduct = await res.json()
+    // setProducts((prevProducts) => [...prevProducts, addedProduct ])
+
+    // 5 - Refatorando POST
+
+    httpConfig(product, "POST")
+
+    setName("")
+    setPrice("")
+  }
+
+  // 9 - Desafio
+  const handleDeleteProduct = (id) => {
+    //console.log(id)
+    httpConfig(id, "DELETE")
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="App">
+      <h1>Lista de Produtos</h1>
+      {/* 6 - Loading */}
+      {loading && <p>Carregando Dados...</p>}
+      {error && <p>{error}</p>}
+      {!error && (
+        <ul>
+          {items &&
+            items.map((product) => (
+              <li className="product-container" key={product.id}>
+                <span className="product-name">{product.name}</span>
+                <span className="product-price">R$ {product.price}</span>
+                <span className="product-action">
+                  {/* 9 - Desafio */}
+                  <input
+                    type="submit"
+                    name="deletar"
+                    value="DELETAR"
+                    onClick={() => handleDeleteProduct(product.id)}
+                  />
+                </span>
+              </li>
+            ))}
+        </ul>
+      )}
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Nome</span>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
 
-      <div className="ticks"></div>
+          <label>
+            <span>Preço</span>
+            <input
+              type="number"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </label>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          {/* 7 - State de Loading no POST */}
+          {loading && <input type="submit" disabled value="Aguarde..." />}
+          {!loading && <input type="submit" value="Criar" />}
+        </form>
+      </div>
+    </div>
   )
 }
 
