@@ -47,7 +47,7 @@ function App() {
       },
       body: JSON.stringify(product),
     })
-
+ 
     // 3 - Carregamento
     const addedProduct = await res.json()
 
