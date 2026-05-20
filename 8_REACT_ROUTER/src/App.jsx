@@ -13,8 +13,6 @@ import Search from './pages/Search';
 
 function App() {
 
-  
-
   return (
     <div className="App">
         <h1>React router</h1>

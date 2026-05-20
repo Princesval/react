@@ -41,8 +41,7 @@ const Home = () => {
                     ))}
             </ul>
 
-            {/* <p>Valor do contador Counter Context: {counter}</p>
-            <ChangeCounter></ChangeCounter>             */}
+            {/* <p>Valor do contador Counter Context: {counter}</p><ChangeCounter></ChangeCounter> */}
             
         </div>
     )
