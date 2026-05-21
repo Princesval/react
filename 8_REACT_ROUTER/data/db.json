@@ -2,28 +2,18 @@
   "products": [
     {
       "id": 1,
-      "name": "Camisa",
+      "name": "Camisa esportiva",
       "price": 59.9
     },
     {
       "id": 2,
-      "name": "Calça vermelha",
-      "price": 90
+      "name": "Calça moletom",
+      "price": 99.9
     },
     {
       "id": 3,
-      "name": "Boné aba reta",
-      "price": 29.9
-    },
-    {
-      "name": "Teste",
-      "price": "12",
-      "id": 4
-    },
-    {
-      "name": "Capa de Chuva",
-      "price": "50.50",
-      "id": 5
+      "name": "Tênis de corrida",
+      "price": 129.9
     }
   ]
 }

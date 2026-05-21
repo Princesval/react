@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export const useFetch = (url) => {
     const [data, setData] = useState(null)
+    const [error, setError] = useState(null)
 
     // 5 - refatorando o post
     const [config, setConfig] = useState(null)
@@ -25,24 +26,27 @@ export const useFetch = (url) => {
     }
 
     useEffect(() => {
-        
+
         const fetchData = async () => {
 
-            // 6 - loading
             setLoading(true)
-            
-            const res = await fetch(url)
 
-            const json = await res.json()
-            
-            setData(json)
+            try {
+                const res = await fetch(url)
+
+                const json = await res.json()
+
+                setData(json)
+            } catch (error) {
+                setError("Erro ao carregar os dados")
+            }
 
             setLoading(false)
-        }
+    }
 
-        fetchData();
+    fetchData();
 
-    }, [url, callFetch])
+}, [url, callFetch])
 
     // Refatorando post
     useEffect(() => {
@@ -61,5 +65,5 @@ export const useFetch = (url) => {
        httpRequest()
     }, [config, method, url])
 
-    return { data, httpConfig, loading };
+    return { data, httpConfig, loading, error };
 };
