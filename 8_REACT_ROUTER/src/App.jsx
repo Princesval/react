@@ -9,6 +9,7 @@ import About from './pages/About'
 
 // Components
 import Navbar from './components/Navbar'
+import Product from './pages/Product'
 
 function App() {
 
@@ -18,10 +19,13 @@ function App() {
         <h1>React router</h1>
         <BrowserRouter>
           <Navbar/> 
+
           <Routes>
             {/* 2 - Links com react router */}
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
+            {/* 4 - Rota dinâmica */}
+            <Route path='/products/:id' element={<Product />}/>
           </Routes>
         </BrowserRouter>
       </div>

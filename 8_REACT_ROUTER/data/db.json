@@ -1,17 +1,17 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": 8,
       "name": "Camisa esportiva",
       "price": 59.9
     },
     {
-      "id": 2,
+      "id": 15,
       "name": "Calça moletom",
       "price": 99.9
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Tênis de corrida",
       "price": 129.9
     }
